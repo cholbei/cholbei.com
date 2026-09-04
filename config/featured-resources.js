@@ -2,6 +2,10 @@
 // Add verified Envato item IDs after reviewing each product for Cholbei fit.
 export const featuredResources = [
   {
+    id: 4106987,
+    group: "porto-responsive-html5-template"
+  },
+  {
     id: 30626608,
     group: "infixlms-learning-management-system"
   }
