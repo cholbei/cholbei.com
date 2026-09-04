@@ -2,4 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://cholbei.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://cholbei.com/resources/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cholbei.com/resources/ecommerce-templates/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cholbei.com/resources/admin-dashboards/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cholbei.com/resources/saas-crm-ui/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://cholbei.com/resources/developer-templates/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

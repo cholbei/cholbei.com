@@ -35,13 +35,16 @@ export function getEnvatoItem(context, id) {
   });
 }
 
-export function searchEnvato(context, query, page = 1) {
+export function searchEnvato(context, query, page = 1, options = {}) {
   const config = getConfig(context.env);
-  return cachedJson(context, "envato-search", `${query}:${page}`, config.searchTtl, async () => {
-    const raw = await envatoRequest(context.env, "/v1/discovery/search/search/item", { term: query, page, page_size: 24 });
+  const pageSize = Math.min(Math.max(Number(options.pageSize) || 24, 1), 100);
+  const sortBy = options.sortBy || "relevance";
+  const site = options.site || "";
+  return cachedJson(context, "envato-search", `${query}:${page}:${pageSize}:${sortBy}:${site}`, config.searchTtl, async () => {
+    const raw = await envatoRequest(context.env, "/v1/discovery/search/search/item", { term: query, page, page_size: pageSize, sort_by: sortBy, ...(site ? { site } : {}) });
     const matches = raw.matches || raw.items || raw.results || [];
     const items = matches.map(entry => normalizeEnvatoItem(entry, config.currency))
       .filter(item => item.id && item.envatoUrl && isRelevant(item));
-    return { items, page, total: Number(raw.total_hits || raw.total || items.length) };
+    return { items, page, total: Number(raw.total_hits || raw.total || items.length), sortBy };
   });
 }

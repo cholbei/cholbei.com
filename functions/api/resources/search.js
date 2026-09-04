@@ -8,8 +8,9 @@ export async function onRequestGet(context) {
     const url = new URL(context.request.url);
     const category = url.searchParams.get("category") || "";
     const requested = validSearch(url.searchParams.get("q"));
-    const query = resourceCategories[category] ? `${requested} ${resourceCategories[category]}` : requested;
-    const result = await searchEnvato(context, query, safePage(url.searchParams.get("page")));
+    const definition = resourceCategories[category];
+    const query = definition ? `${requested} ${definition.query}` : requested;
+    const result = await searchEnvato(context, query, safePage(url.searchParams.get("page")), definition ? { site: definition.site } : {});
     return json({ ...result, query: requested, category: resourceCategories[category] ? category : null });
   } catch (error) {
     return apiError(error, String(context.env.DEBUG_INTEGRATIONS).toLowerCase() === "true");

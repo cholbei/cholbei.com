@@ -45,6 +45,7 @@
     image.width = 800; image.height = 500; image.loading = "lazy";
     image.addEventListener("error", () => { if (!image.src.endsWith("resource-placeholder.svg")) image.src = placeholder; }, { once: true });
     media.append(image, node("span", "resource-source", item.market || "Envato"));
+    if (item.rank) media.append(node("span", "resource-rank", `#${item.rank} in this category`));
 
     const body = node("div", "resource-card-body");
     body.append(node("div", "resource-meta", item.category || item.cholbeiGroup || "Digital resource"));
@@ -53,6 +54,7 @@
     const facts = node("div", "resource-facts");
     addFact(facts, formatPrice(item.price));
     addFact(facts, item.rating ? `${item.rating} rating` : null);
+    addFact(facts, Number.isFinite(item.reviews) && item.reviews > 0 ? `${item.reviews.toLocaleString()} reviews` : null);
     addFact(facts, Number.isFinite(item.sales) ? `${item.sales.toLocaleString()} sales` : null);
     if (facts.childElementCount) body.append(facts);
 
@@ -87,6 +89,27 @@
     items.forEach(item => grid.append(productCard(item)));
   }
 
+  function renderGroups(groups, options = {}) {
+    grid.replaceChildren();
+    status.hidden = true;
+    title.textContent = options.title || "Top resources right now";
+    kicker.textContent = options.kicker || "Automated live rankings";
+    const total = groups.reduce((sum, group) => sum + group.items.length, 0);
+    count.textContent = `${total} ranked resources · refreshed from Envato`;
+    groups.forEach(group => {
+      const section = node("section", "resource-group");
+      const heading = node("div", "resource-group-heading");
+      const copy = node("div");
+      copy.append(node("h3", "", group.label), node("p", "", group.description));
+      const more = node("a", "", "Explore category →");
+      more.href = `/resources/${group.slug}/`;
+      heading.append(copy, more);
+      const cards = node("div", "resource-group-grid");
+      group.items.forEach(item => cards.append(productCard(item)));
+      section.append(heading, cards);
+      grid.append(section);
+    });
+  }
   async function request(url, options = {}) {
     controller?.abort();
     controller = new AbortController();
@@ -95,7 +118,8 @@
       const response = await fetch(url, { signal: controller.signal, headers: { Accept: "application/json" } });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.error || "Resources are temporarily unavailable.");
-      render(data.items || (data.item ? [data.item] : []), options);
+      if (Array.isArray(data.groups)) renderGroups(data.groups, options);
+      else render(data.items || (data.item ? [data.item] : []), options);
     } catch (error) {
       if (error.name === "AbortError") return;
       grid.replaceChildren(); count.textContent = "";
@@ -111,8 +135,8 @@
     request(`/api/resources/search?q=${encodeURIComponent(query)}`, { title: `Results for “${query}”`, kicker: "Search results", emptyTitle: "No relevant resources found", emptyText: "Try a more specific template, UI, or dashboard search." });
   });
 
-  document.querySelectorAll("[data-category]").forEach(button => button.addEventListener("click", () => {
-    document.querySelectorAll("[data-category]").forEach(item => item.classList.toggle("active", item === button));
+  document.querySelectorAll("button[data-category]").forEach(button => button.addEventListener("click", () => {
+    document.querySelectorAll("button[data-category]").forEach(item => item.classList.toggle("active", item === button));
     input.value = button.dataset.query;
     request(`/api/resources/search?q=${encodeURIComponent(button.dataset.query)}&category=${encodeURIComponent(button.dataset.category)}`, { title: button.textContent, kicker: "Browse by category", emptyTitle: "No relevant resources found" });
   }));
@@ -126,5 +150,5 @@
   document.querySelector("[data-year]").textContent = new Date().getFullYear();
   const itemId = new URLSearchParams(location.search).get("item");
   if (/^[1-9]\d{0,11}$/.test(itemId || "")) request(`/api/resources/item/${itemId}`, { title: "Resource details", kicker: "Selected resource" });
-  else request("/api/resources/featured", { title: "Featured resources", kicker: "Curated starting points" });
+  else request("/api/resources/featured", { title: "Top resources right now", kicker: "Automated live rankings" });
 })();

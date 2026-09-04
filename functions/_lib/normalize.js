@@ -5,7 +5,7 @@ const image = value => typeof value === "string" ? value : first(value?.url, val
 export function normalizeEnvatoItem(raw = {}, currency = "USD") {
   const name = first(raw.name, raw.title, "Untitled resource");
   const previewValues = Array.isArray(raw.previews) ? raw.previews : Object.values(raw.previews || {});
-  const previews = previewValues.map(image).filter(Boolean);
+  const previews = previewValues.map(image).filter(value => /^https:\/\//i.test(value || ""));
   const cents = raw.price_cents === undefined ? null : number(raw.price_cents) / 100;
   const amount = number(first(raw.price, cents));
   return {
@@ -17,6 +17,7 @@ export function normalizeEnvatoItem(raw = {}, currency = "USD") {
     category: first(raw.classification, raw.category, null),
     price: amount === null ? null : { amount, currency: first(raw.currency, currency) },
     rating: number(first(raw.rating, raw.rating_decimal)),
+    reviews: number(first(raw.rating_count, raw.number_of_ratings, raw.reviews_count)),
     sales: number(first(raw.number_of_sales, raw.sales)),
     thumbnail: image(first(raw.thumbnail, raw.thumbnail_url, raw.image, raw.previews?.icon_preview, raw.previews?.icon_with_landscape_preview)) || previews[0] || null,
     images: previews,
@@ -26,7 +27,7 @@ export function normalizeEnvatoItem(raw = {}, currency = "USD") {
   };
 }
 
-const replacement = /\b(multivendor|multi-vendor|erp|complete crm|inventory management system|e-?commerce application)\b/i;
+const replacement = /\b(multivendor|multi-vendor|marketplace|erp|complete (?:lms|crm|cms)|management system|full application|e-?commerce application|app builder|platform with)\b/i;
 const relevant = /\b(template|theme|ui|dashboard|admin|bootstrap|html|frontend|landing|saas|crm)\b/i;
 
 export function isRelevant(item) {

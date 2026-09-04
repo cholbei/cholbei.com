@@ -1,0 +1,99 @@
+.category-hero {
+  padding: 86px 0 72px;
+  background: var(--r-ink);
+  color: white;
+}
+
+.category-hero h1 {
+  max-width: 950px;
+  margin: 0;
+  font-size: clamp(3.4rem, 7vw, 7rem);
+  line-height: .9;
+  letter-spacing: -.065em;
+}
+
+.category-hero .resource-lead {
+  color: #c8c5bd;
+}
+
+.resource-breadcrumb {
+  margin: 0 0 45px;
+  color: #94918a;
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+.resource-breadcrumb a {
+  color: var(--r-acid);
+}
+
+.category-ranking {
+  padding: 90px 0;
+}
+
+.category-ranking .resource-card h2 {
+  margin: 10px 0;
+  font-size: 1rem;
+  line-height: 1.15;
+  letter-spacing: -.035em;
+}
+
+.category-method {
+  padding: 90px 0;
+  background: var(--r-acid);
+}
+
+.category-method-grid {
+  display: grid;
+  grid-template-columns: 1.3fr .7fr;
+  gap: 90px;
+}
+
+.category-method h2 {
+  margin: 0 0 22px;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: .95;
+  letter-spacing: -.05em;
+}
+
+.category-method p {
+  max-width: 720px;
+  margin: 0;
+}
+
+.category-method aside {
+  padding: 28px;
+  border: 1px solid var(--r-ink);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .28);
+}
+
+.category-method aside h2 {
+  font-size: 1.5rem;
+}
+
+.buyer-checks {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding-left: 19px;
+  font-size: .78rem;
+}
+
+@media (max-width: 800px) {
+  .category-method-grid {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+}
+
+@media (max-width: 620px) {
+  .category-hero {
+    padding: 68px 0 58px;
+  }
+
+  .category-ranking,
+  .category-method {
+    padding: 70px 0;
+  }
+}

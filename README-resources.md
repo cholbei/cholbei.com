@@ -6,7 +6,7 @@ Cholbei Resources is a database-free affiliate discovery page at `/resources/`. 
 
 - Static, indexable Resources landing page
 - Live Envato search with relevance filtering
-- Curated featured IDs loaded from `config/featured-resources.js`
+- Automated top-five lists for four editorial categories, calculated from live rating, review-confidence, and sales signals
 - Live item-detail view through `/resources/?item=ITEM_ID`
 - Strict `/resources/go/ITEM_ID/` affiliate redirect
 - Cloudflare Cache API for short-lived product/search/link caching
@@ -50,9 +50,9 @@ Never commit `.dev.vars`; copy `.dev.vars.example` locally and insert test crede
 
 1. Create an Envato personal token with only the access required for Market catalogue calls.
 2. Save it as the encrypted `ENVATO_TOKEN` Cloudflare secret.
-3. Choose at least three complementary template/UI item IDs.
-4. Add only their IDs, Cholbei group, and order to `config/featured-resources.js`. Do not copy titles, prices, descriptions, images, or destination URLs into GitHub.
-5. Set one verified item as `ENVATO_TEST_ITEM_ID` locally for discovery testing.
+3. Review the category queries and original buyer guidance in `config/featured-resources.js`.
+4. Do not add item IDs or copy marketplace descriptions. The server requests up to 100 candidates per category, excludes replacement applications, and calculates the current top five.
+5. Set one verified item as `ENVATO_TEST_ITEM_ID` locally for redirect discovery testing.
 
 ## Impact setup
 
@@ -77,6 +77,7 @@ Then visit:
 
 ```text
 http://localhost:8788/resources/
+http://localhost:8788/resources/ecommerce-templates/
 http://localhost:8788/api/resources/search?q=ecommerce
 http://localhost:8788/api/resources/item/ENVATO_ITEM_ID
 http://localhost:8788/resources/go/ENVATO_ITEM_ID/
@@ -94,9 +95,9 @@ Deploy the repository as a Cloudflare Pages project connected to GitHub. Use no 
 
 ## Known limitations and owner actions
 
-- No real credentials were available during development, so API discovery and an earning click could not be executed locally.
-- Featured products remain empty until verified IDs are curated.
-- The Impact tracking-link endpoint and returned field must be confirmed with the active account.
-- Deals, promotions, promo codes, ads, catalog availability, contract status, and program status remain unverified.
-- The owner must confirm `ENVATO_ALLOWED_HOSTS`; the redirect intentionally fails until this allowlist exists.
-- Product detail is a query-state view in the v1 page and is not intended for individual search indexing.
+- Rankings depend on Envato search availability and are cached briefly to limit API load.
+- Rankings use marketplace signals; they are not paid placements or claims of personal hands-on testing.
+- Category definitions and original buyer guidance remain editorial and must be reviewed before adding a new indexable category.
+- Deals, promotions, promo codes, ads, and catalog feeds are not rendered.
+- The redirect stays fail-closed unless Impact credentials and `ENVATO_ALLOWED_HOSTS` are configured.
+- Product detail remains a query-state view; only the curated category pages are included in the sitemap.
