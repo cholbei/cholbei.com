@@ -1,6 +1,11 @@
 // Curation only. Live product data is fetched from Envato at request time.
 // Add verified Envato item IDs after reviewing each product for Cholbei fit.
-export const featuredResources = [];
+export const featuredResources = [
+  {
+    id: 30626608,
+    group: "infixlms-learning-management-system"
+  }
+];
 
 export const resourceCategories = Object.freeze({
   "ecommerce-template": "ecommerce HTML template",
