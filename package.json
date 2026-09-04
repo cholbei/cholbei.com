@@ -1,0 +1,13 @@
+{
+  "name": "cholbei-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-resources.mjs && node scripts/test-resource-handlers.mjs",
+    "test:integrations": "node scripts/test-integrations.mjs",
+    "dev": "wrangler pages dev . --port 8788"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

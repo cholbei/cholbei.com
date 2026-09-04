@@ -16,8 +16,12 @@ The source of truth for the business and architecture is `Cholbei — New Busine
 
 ## Local preview
 
-Open `index.html` directly or serve this directory through XAMPP at `http://localhost/cholbei.com/`.
+The marketing homepage can be served through XAMPP at `http://localhost/cholbei.com/`. The API-driven Resources section requires Cloudflare Pages Functions; see `README-resources.md` for Wrangler setup.
+
+## Resources
+
+`/resources/` is an isolated Envato/Impact affiliate discovery section. It is intentionally absent from the main navigation in v1. Product data remains live through Envato, affiliate links are generated server-side through Impact, and no product database is used.
 
 ## Deployment
 
-The repository is a static GitHub Pages site with the custom domain declared in `CNAME`.
+Deploy the repository from GitHub through Cloudflare Pages so the static site and Pages Functions ship together. Keep the custom domain declared in `CNAME` until DNS/deployment migration is complete.
