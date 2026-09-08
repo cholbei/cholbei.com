@@ -787,7 +787,7 @@ Use R2 if the website needs:
 - portfolio media
 - uploads
 - downloadable files
-- client requirement attachments
+- client requirement attachments etc.
 
 ---
 

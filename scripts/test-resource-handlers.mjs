@@ -19,6 +19,7 @@ globalThis.fetch = async url => {
 };
 const found = await search({ request: new Request("https://cholbei.test/api/resources/search?q=fashion"), env, waitUntil });
 assert.equal(found.status, 200);
+assert.equal(found.headers.get("x-robots-tag"), "noindex");
 assert.equal((await found.json()).items[0].id, "321");
 
 let calls = 0;
@@ -30,11 +31,14 @@ globalThis.fetch = async url => {
 };
 const tracked = await redirect({ request: new Request("https://cholbei.test/resources/go/321/"), params: { id: "321" }, env, waitUntil });
 assert.equal(tracked.status, 302);
+assert.equal(tracked.headers.get("x-robots-tag"), "noindex");
+assert.equal(tracked.headers.get("cache-control"), "no-store");
 assert.equal(tracked.headers.get("location"), "https://example.sjv.io/tracked-item");
 
 calls = 0;
 const rejected = await redirect({ request: new Request("https://cholbei.test/resources/go/no/"), params: { id: "https://evil.test" }, env, waitUntil });
 assert.equal(rejected.status, 404);
+assert.equal(rejected.headers.get("x-robots-tag"), "noindex");
 assert.equal(calls, 0);
 
 globalThis.fetch = async () => Response.json({ id: 999, name: "Test", url: "https://evil.test/item/999" });

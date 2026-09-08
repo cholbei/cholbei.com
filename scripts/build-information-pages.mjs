@@ -69,7 +69,7 @@ for (const p of pages) {
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escape(p.title)} | Cholbei</title><meta name="description" content="${escape(p.intro)}"><meta name="theme-color" content="#11110f">
-<link rel="canonical" href="${canonical}"><meta property="og:title" content="${escape(p.title)} | Cholbei"><meta property="og:description" content="${escape(p.intro)}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cholbei.com/assets/img/og-cover.svg">
+<link rel="canonical" href="${canonical}"><meta property="og:title" content="${escape(p.title)} | Cholbei"><meta property="og:description" content="${escape(p.intro)}"><meta property="og:type" content="website"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cholbei.com/assets/img/social-media/cholbei-cover-wide-1640x624.png"><meta property="og:image:alt" content="Cholbei ? client-owned websites and web systems"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/css/style.css"><link rel="stylesheet" href="../assets/css/information.css"><script src="../assets/js/main.js" defer></script>
 </head><body class="information-page"><a class="skip-link" href="#main">Skip to content</a>
 ${header('../', '../', p.slug)}
