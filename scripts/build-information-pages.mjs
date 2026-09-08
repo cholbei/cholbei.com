@@ -54,7 +54,7 @@ function header(prefix, homeHref, active = '') {
   return oldHeader.replace(/href="[^"]*" aria-label="Cholbei home"/, `href="${homeHref || './'}" aria-label="Cholbei home"`).replace(/<nav[\s\S]*?<\/nav>/, nav);
 }
 function footer(prefix, homeHref) {
-  const links = `<div class="footer-links"><a href="${homeHref}#solutions">Solutions</a><a href="${homeHref}#packages">Packages</a><a href="${homeHref}#ownership">Ownership</a><a href="${homeHref}#process">Process</a>${pageLinks(prefix)}<a href="https://github.com/cholbei" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
+  const links = `<div class="footer-links"><a href="${homeHref}#solutions">Solutions</a><a href="${homeHref}#packages">Packages</a><a href="${homeHref}#ownership">Ownership</a><a href="${homeHref}#process">Process</a>${pageLinks(prefix)}<a href="${prefix}resources/">Resources</a><a href="https://github.com/cholbei" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
   return oldFooter.replace(/class="brand brand-footer" href="[^"]*"/, `class="brand brand-footer" href="${homeHref || './'}"`).replace(/<div class="footer-links">[\s\S]*?<\/div>/, links);
 }
 home = home.replace(oldHeader, header('', '')).replace(oldFooter, footer('', ''));
