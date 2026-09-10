@@ -81,6 +81,7 @@ function page(group) {
     "<link rel=\"icon\" href=\"/assets/img/favicon.svg\" type=\"image/svg+xml\"><link rel=\"stylesheet\" href=\"/assets/css/style.css\"><link rel=\"stylesheet\" href=\"/resources/assets/resources.css\"><link rel=\"stylesheet\" href=\"/resources/assets/category.css\">",
     "<script type=\"application/ld+json\">" + schema + "</script>",
     "<meta property=\"og:image\" content=\"https://cholbei.com/assets/img/social-media/cholbei-cover-wide-1640x624.png\"><meta property=\"og:image:alt\" content=\"Cholbei ? client-owned websites and web systems\"><meta name=\"twitter:card\" content=\"summary_large_image\">",
+    "<script src=\"/assets/js/analytics.js\" defer></script>",
     "</head><body class=\"resources-page\">",
     "<a class=\"skip-link\" href=\"#resources-main\">Skip to resources</a>",
     "<header class=\"resources-header\"><div class=\"resources-container resources-nav\"><a class=\"resource-brand\" href=\"/resources/\"><span>cholbei</span><i>/ resources</i></a><a class=\"back-link\" href=\"/resources/\">All resources -&gt;</a></div></header>",
