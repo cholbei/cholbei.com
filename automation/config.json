@@ -1,0 +1,48 @@
+{
+  "siteUrl": "https://cholbei.com",
+  "branch": "main",
+  "remote": "https://github.com/cholbei/cholbei.com.git",
+  "searchConsoleProperty": "sc-domain:cholbei.com",
+  "ga4PropertyId": "",
+  "gtmContainerId": "GTM-5JG9GTJQ",
+  "measurementId": "G-7J8CVLY8SF",
+  "schedule": "Friday 10:00 Asia/Dhaka",
+  "topics": [
+    {
+      "slug": "website-project-brief",
+      "type": "blog",
+      "title": "How to prepare a useful website project brief",
+      "brief": "A practical guide for small businesses: goals, audiences, page requirements, content, integrations, access, budget and acceptance criteria. Include a reusable brief checklist. No invented prices or client stories."
+    },
+    {
+      "slug": "website-handover-checklist",
+      "type": "blog",
+      "title": "A website handover checklist for business owners",
+      "brief": "Explain repository ownership, domain and hosting access, documentation, backups, licences and optional maintenance. Use the Cholbei ownership model."
+    },
+    {
+      "slug": "service-business-websites",
+      "type": "landing",
+      "title": "Websites for service businesses",
+      "brief": "Explain enquiries, clear service information, accessible contact paths and client-owned delivery. Explain how to discuss scope with Cholbei. Do not invent guarantees or testimonials."
+    },
+    {
+      "slug": "website-content-planning",
+      "type": "blog",
+      "title": "Plan your website content before development starts",
+      "brief": "Practical preparation of service descriptions, images, navigation and calls to action. Give original illustrative examples clearly marked as examples."
+    },
+    {
+      "slug": "website-ownership-questions",
+      "type": "blog",
+      "title": "Questions to ask before hiring a website developer",
+      "brief": "Help a buyer discuss source code, account ownership, recurring costs, licences, change requests, testing and handover."
+    },
+    {
+      "slug": "business-website-enquiries",
+      "type": "landing",
+      "title": "Business websites built around better enquiries",
+      "brief": "Describe forms, email contact, scope-dependent lead workflows and reporting without promising conversion results. Explain the Basic and Business pack starting points."
+    }
+  ]
+}

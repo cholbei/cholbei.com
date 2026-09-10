@@ -44,6 +44,7 @@ const pages = [
 ];
 
 const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;');
+const hasPublishedContent = (() => { try { return JSON.parse(read('automation/published.json')).length > 0; } catch { return false; } })();
 const pageLinks = prefix => pages.map(p => `<a href="${prefix}${p.slug}/">${escape(p.title)}</a>`).join('');
 let home = read('index.html');
 const oldHeader = home.match(/<header class="site-header"[\s\S]*?<\/header>/)[0];
@@ -55,7 +56,7 @@ function header(prefix, homeHref, active = '') {
   return oldHeader.replace(/href="[^"]*" aria-label="Cholbei home"/, `href="${homeHref || './'}" aria-label="Cholbei home"`).replace(/<nav[\s\S]*?<\/nav>/, nav);
 }
 function footer(prefix, homeHref) {
-  const links = `<div class="footer-links"><a href="${homeHref}#solutions">Solutions</a><a href="${homeHref}#packages">Packages</a><a href="${homeHref}#ownership">Ownership</a><a href="${homeHref}#process">Process</a>${pageLinks(prefix)}<a href="${prefix}resources/">Resources</a><a href="https://github.com/cholbei" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
+  const links = `<div class="footer-links"><a href="${homeHref}#solutions">Solutions</a><a href="${homeHref}#packages">Packages</a><a href="${homeHref}#ownership">Ownership</a><a href="${homeHref}#process">Process</a>${pageLinks(prefix)}${hasPublishedContent ? `<a href="${prefix}blog/">Blog</a><a href="${prefix}solutions/">Solutions guides</a>` : ''}<a href="${prefix}resources/">Resources</a><a href="https://github.com/cholbei" target="_blank" rel="noreferrer">GitHub ↗</a></div>`;
   return oldFooter.replace(/class="brand brand-footer" href="[^"]*"/, `class="brand brand-footer" href="${homeHref || './'}"`).replace(/<div class="footer-links">[\s\S]*?<\/div>/, links);
 }
 home = home.replace(oldHeader, header('', '')).replace(oldFooter, footer('', ''));

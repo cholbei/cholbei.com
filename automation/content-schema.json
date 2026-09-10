@@ -1,0 +1,8 @@
+{
+ "type":"object","additionalProperties":false,
+ "required":["title","description","intro","sections"],
+ "properties":{
+  "title":{"type":"string"},"description":{"type":"string"},"intro":{"type":"string"},
+  "sections":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["heading","paragraphs","bullets"],"properties":{"heading":{"type":"string"},"paragraphs":{"type":"array","items":{"type":"string"}},"bullets":{"type":"array","items":{"type":"string"}}}}}
+ }
+}
