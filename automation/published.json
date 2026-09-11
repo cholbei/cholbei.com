@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "website-project-brief",
+    "type": "blog",
+    "route": "blog/website-project-brief/",
+    "title": "How to write a website project brief for your business",
+    "description": "Plan your business website with a practical project brief covering goals, pages, content, budget, ownership and launch requirements.",
+    "publishedAt": "2026-09-12T00:00:00+06:00",
+    "source": "editorial"
+  },
+  {
+    "slug": "website-handover-checklist",
+    "type": "blog",
+    "route": "blog/website-handover-checklist/",
+    "title": "Website handover checklist for business owners",
+    "description": "Check your website handover covers domain access, source code, hosting, business data, licences, documentation and ongoing responsibilities.",
+    "publishedAt": "2026-09-12T00:00:00+06:00",
+    "source": "editorial"
+  }
+]

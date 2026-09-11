@@ -55,3 +55,7 @@ References:
 - https://learn.chatgpt.com/docs/non-interactive-mode
 - https://developers.google.com/analytics/devguides/reporting/data/v1/quickstart
 - https://developers.google.com/webmaster-tools/v1/sitemaps/submit
+
+## Editorial blog pages
+
+The first two articles live in `content/blog.mjs`. Run `npm.cmd run build:blog` to rebuild their pages and the blog listing. Their slugs are recorded in `automation/published.json` so weekly runs skip these completed topics. Blog pages use relative links for both XAMPP and domain hosting. `npm.cmd run check` includes blog metadata, structured-data and local-link checks.

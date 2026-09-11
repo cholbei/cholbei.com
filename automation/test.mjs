@@ -14,8 +14,9 @@ const home=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const html=render(data,{type:'blog',slug:'sample'},'2026-09-10',home);
 assert.match(html,/rel="canonical" href="https:\/\/cholbei.com\/blog\/sample\/"/);
 assert.equal((html.match(/<h1>/g)||[]).length,1);
-assert.equal((html.match(/src="\/assets\/js\/analytics.js"/g)||[]).length,1);
-assert.ok(!html.includes('href="../'));
+assert.equal((html.match(/src="\.\.\/\.\.\/assets\/js\/analytics.js"/g)||[]).length,1);
+assert.ok(html.includes('href="../../contact-us/"'));
+assert.throws(()=>validateContent({...data,sections:data.sections.map((s,i)=>i===0?{...s,links:[{href:'//evil.example',label:'Unsafe link'}]}:s)}));
 const ledger=path.join(root,'automation/published.json');
 if(fs.existsSync(ledger)) for(const page of readJson(ledger)){
  const content=fs.readFileSync(path.join(root,page.route,'index.html'),'utf8');

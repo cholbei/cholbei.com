@@ -96,7 +96,7 @@ async function main() {
     const expected=new Set(files);
     const changed=git('ls-files','--modified','--others','--exclude-standard').split('\n').filter(Boolean);
     if(changed.some(f=>!expected.has(f)))throw Error('Unexpected file changes; publication stopped');
-    for(const script of ['scripts/check-resources.mjs','scripts/test-resource-handlers.mjs','scripts/test-ranking.mjs','automation/test.mjs'])run(process.execPath,[script]);
+    for(const script of ['scripts/check-resources.mjs','scripts/test-resource-handlers.mjs','scripts/test-ranking.mjs','automation/test.mjs','scripts/check-blog.mjs'])run(process.execPath,[script]);
     git('diff','--check');
     git('add','--',...files);
     git('commit','-m','Publish '+topic.slug);

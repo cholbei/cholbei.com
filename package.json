@@ -3,9 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node scripts/check-resources.mjs && node scripts/test-resource-handlers.mjs && node scripts/test-ranking.mjs",
+    "check": "node scripts/check-resources.mjs && node scripts/test-resource-handlers.mjs && node scripts/test-ranking.mjs && node scripts/check-blog.mjs",
     "test:integrations": "node scripts/test-integrations.mjs",
-    "dev": "wrangler pages dev . --port 8788"
+    "dev": "wrangler pages dev . --port 8788",
+    "build:blog": "node scripts/build-blog.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
